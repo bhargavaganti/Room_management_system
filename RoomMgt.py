@@ -10,3 +10,13 @@ def Dojo(object):
   def __init__(self):
   self.all_rooms = []
   
+def R00m(object):
+  """ 
+      Rooms at The Dojo
+      attributes:
+      Room name
+      Room Occupants
+  """
+  def __init__(self, room_name):
+    self.room_name = room_name
+    
