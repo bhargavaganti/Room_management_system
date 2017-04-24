@@ -20,3 +20,8 @@ class Room(object):
   def __init__(self, room_name):
     self.room_name = room_name
     
+class livingSpace(Room):
+  max_people = 4
+    
+class Office(Room):
+  max_people = 6
