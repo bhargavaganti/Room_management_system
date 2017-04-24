@@ -1,4 +1,4 @@
- """
+"""
   name : room management system.
   authr : benjamin wacha
   email: bmwachajr@gmail,com
@@ -7,8 +7,15 @@
 """
 class Dojo(object):
   """This is the Dojo class, and andela facility"""
-  def __init__(self):
-  self.all_rooms = []
+  all_rooms = []
+  #def __init__(self):
+  
+  def create_room(room_name, room_type):
+    room_obj = room_name + "_" + room_type
+    room_obj = Room(room_name, room_type)
+    Dojo.all_rooms.append(room_obj)
+    
+    return room_obj
   
 class Room(object):
   """ 
@@ -17,7 +24,7 @@ class Room(object):
       Room name
       Room Occupants
   """
-  def __init__(self, room_name):
+  def __init__(self, room_name, room_type):
     self.room_name = room_name
     
 class livingSpace(Room):

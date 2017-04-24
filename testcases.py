@@ -1,4 +1,4 @@
- """
+"""
   name : room management system.
   authr : benjamin wacha
   email: bmwachajr@gmail,com
@@ -17,7 +17,7 @@ class TestCreateRoom(unittest.TestCase):
     self.assertTrue(blue_office)
     new_room_count = len(Dojo.all_rooms)
     self.assertEqual(new_room_count - initial_room_count, 1)
-
+"""
   def test_create_room_name_not_given(self):
     with self.assertRaises(RuntimeError) as context:
       empty_office = Dojo.create_room("","")
@@ -34,6 +34,6 @@ class TestCreateRoom(unittest.TestCase):
           'Couldnt create Room.',
           context.exception.message,
           'Both Room Name and Room Type must be given'
-        )
+        )"""
 if __name__ == "__main__":
   unittest.main()
