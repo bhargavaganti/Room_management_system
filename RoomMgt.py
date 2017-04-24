@@ -5,12 +5,12 @@
   descrption: a system to randomly allocate rooms to andela staff and fellows.
 
 """
-def Dojo(object):
+class Dojo(object):
   """This is the Dojo class, and andela facility"""
   def __init__(self):
   self.all_rooms = []
   
-def R00m(object):
+class Room(object):
   """ 
       Rooms at The Dojo
       attributes:
