@@ -17,7 +17,7 @@ class TestCreateRoom(unittest.TestCase):
     self.assertTrue(blue_office)
     new_room_count = len(Dojo.all_rooms)
     self.assertEqual(new_room_count - initial_room_count, 1)
-"""
+
   def test_create_room_name_not_given(self):
     with self.assertRaises(RuntimeError) as context:
       empty_office = Dojo.create_room("","")
@@ -28,12 +28,12 @@ class TestCreateRoom(unittest.TestCase):
       )
       
     def test_create_room_type_not_given(self):
-    with self.assertRaises(RuntimeError) as context:
-      no_type_office = Dojo.create_room("no_type", "")
-      self.assertEqual(
-          'Couldnt create Room.',
-          context.exception.message,
-          'Both Room Name and Room Type must be given'
-        )"""
+      with self.assertRaises(RuntimeError) as context:
+        no_type_office = Dojo.create_room("no_type", "")
+        self.assertEqual(
+            'Couldnt create Room.',
+            context.exception.message,
+            'Both Room Name and Room Type must be given'
+        )
 if __name__ == "__main__":
   unittest.main()

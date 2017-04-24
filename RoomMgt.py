@@ -11,11 +11,14 @@ class Dojo(object):
   #def __init__(self):
   
   def create_room(room_name, room_type):
-    room_obj = room_name + "_" + room_type
-    room_obj = Room(room_name, room_type)
-    Dojo.all_rooms.append(room_obj)
+    if (room_name == "") or (room_type == ""):
+      raise RuntimeError("Couldnt create Room, both Room Name and Room Type needed")
+    else:
+      room_obj = room_name + "_" + room_type
+      room_obj = Room(room_name, room_type)
+      Dojo.all_rooms.append(room_obj)
     
-    return room_obj
+      return room_obj
   
 class Room(object):
   """ 
