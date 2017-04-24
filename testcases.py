@@ -26,5 +26,14 @@ class TestCreateRoom(unittest.TestCase):
           context.exception.message,
           'Both Room Name and Room Type must be given'
       )
+      
+    def test_create_room_type_not_given(self):
+    with self.assertRaises(RuntimeError) as context:
+      no_type_office = Dojo.create_room("no_type", "")
+      self.assertEqual(
+          'Couldnt create Room.',
+          context.exception.message,
+          'Both Room Name and Room Type must be given'
+        )
 if __name__ == "__main__":
   unittest.main()
