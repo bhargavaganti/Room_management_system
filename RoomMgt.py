@@ -10,11 +10,11 @@ import sys
 class Dojo(object):
   """This is the Dojo class, and andela facility"""
   
+  all_rooms = []
   #initializa an empty list of all rooms
   def __init__(self):
     self.all_livingSpace = []
     self.all_offices = []
-    self.all_rooms = []
   
   
   def create_room(self, *args):
