@@ -57,24 +57,24 @@ class Dojo(object):
         
         return room_object
         
-    def allocate_livingspace(self, fellow):
-    """This method allocates a random room to a fellow"""
+  def allocate_livingspace(self, fellow):
+  """This method allocates a random room to a fellow"""
+    
+    room = random.choice(self.livingspace_list)
+    #if fellow wants living space
+    if fellow.wants_accomodation == None:
+      fellow.livingspace = None
+    
+    #if occupants < rooms max people
+    if len(room.occupants) < room.maxxpeople):
+      room.occupants.append(fellow)
+      fellow.livingspace.append(room)
       
-      room = random.choice(self.livingspace_list)
-      #if fellow wants living space
-      if fellow.wants_accomodation == None:
-        fellow.livingspace = None
-      
-      #if occupants < rooms max people
-      if len(room.occupants) < room.maxxpeople):
-        room.occupants.append(fellow)
-        fellow.livingspace.append(room)
-        
-    def allocate_office(self, person):
-    """This method allocates a random office to a both staff and fellows"""
-      
-      room = random.choice(self.office_list)
-      #if fellow wants living space
-      room.occupants.append(person)
-      person.livingspace.append(room)
+  def allocate_office(self, person):
+  """This method allocates a random office to a both staff and fellows"""
+    
+    room = random.choice(self.office_list)
+    #if fellow wants living space
+    room.occupants.append(person)
+    person.livingspace.append(room)
   
