@@ -9,10 +9,9 @@ import sys
 from RoomMgt import Dojo, Room
 
 class Person(object):
-  """ person at the Dojo"""
-  def __init__(self):
-    self.person_name = ''
-    self.office_space = ''
+  """Object of everbody at the Dojo"""
+  def __init__(self, person_name):
+    self.name = person_name
       
     
   def add_person(self, *args):
