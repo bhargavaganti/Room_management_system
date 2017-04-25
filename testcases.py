@@ -45,6 +45,5 @@ class TestCreateRoom(unittest.TestCase):
     self.assertTrue(Staff_henry)
     self.assertEqual(Staff_henry.name, "Henry", msg='Name should be Henry')
     
-    
 if __name__ == "__main__":
   unittest.main()
