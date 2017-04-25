@@ -27,9 +27,9 @@ class Person(object):
       return self
       
     #if Person is employee, allocate office and living space(optionall)
-    elif self.type = "Fellow":
+    elif self.type == "Fellow":
       wants_accomodation = args[-1]
-      if args[-1] == "Y"
+      if args[-1] == "Y":
         dojo.allocate_office(self)
         dojo.allocate_livingspace(self)
         
