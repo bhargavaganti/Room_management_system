@@ -56,5 +56,17 @@ class Dojo(object):
         self.all_rooms.append(room_object)
         
         return room_object
+        
+    def allocate_livingspace(self, employee):
+      shuflle livingsspace list,pick one at random
+      check if ocupants < max numbe
+      add person to room
+      person add room details
+        
+    def allocate_office(self, employee):
+      shuflle office list,pick one at random
+      check if ocupants < max numbe
+      add person to room
+      person add room details
       
   
