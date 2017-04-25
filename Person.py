@@ -31,8 +31,7 @@ class Person(object):
       wants_accomodation = args[-1]
       if args[-1] == "Y"
         self.office = dojo.allocate_office()
-        self.livingspace = dojo.allocate_livingspace(
-      print(self.wants_accomodation)
+        self.livingspace = dojo.allocate_livingspace()
       return self
 
   def allocate_office(self):
