@@ -47,6 +47,23 @@ class TestCreateRoom(unittest.TestCase):
           'Both Room Name and Room Type must be given'
       )
       
+  def test_office_room_adds_to_office_list(self):
+    dojo = Dojo()
+    initial_room_count = len(dojo.all_offices)
+    red_office = dojo.create_room("Red", "Office")
+    self.assertTrue(red_office)
+    new_room_count = len(dojo.all_offices)
+    self.assertEqual(new_room_count - initial_room_count, 1)
+      
+  def test_living_space_adds_to_livngSpace_list(self):
+    dojo = Dojo()
+    initial_room_count = len(dojo.all_offices)
+    red_office = dojo.create_room("Red", "Living Space")
+    self.assertTrue(red_office)
+    new_room_count = len(dojo.all_livingSpace)
+    self.assertEqual(new_room_count - initial_room_count, 1)
+    
+  """
   def test_adds_Staff_successfully(self):
     staff = Staff()
     Staff_Henry = staff.add_person("staff", "Henry")
@@ -59,6 +76,6 @@ class TestCreateRoom(unittest.TestCase):
     fellow_Albert = fellow.add_person("Fellow", "Albert", "Y")
     self.assertEqual(fellow_Albert.person_name, "Albert", msg='Name should be Henry')
     self.assertEqual(fellow_Albert.wants_accomodation, "Y", msg='Name should be Albert')
-    
+  """  
 if __name__ == "__main__":
   unittest.main()
