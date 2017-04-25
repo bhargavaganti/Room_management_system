@@ -8,6 +8,7 @@
 import unittest
 from unittest import TestCase
 from RoomMgt import Dojo
+from Person import Person
 
 class TestCreateRoom(unittest.TestCase):
   def test_create_room_successfully(self):
@@ -37,5 +38,13 @@ class TestCreateRoom(unittest.TestCase):
           context.exception.message,
           'Both Room Name and Room Type must be given'
       )
+      
+  def test_adds_Staff_successfully(self):
+    Staff = Person()
+    Staff_Henry = Staff.add_person("Staff", "Henry")
+    self.assertTrue(Staff_henry)
+    self.assertEqual(Staff_henry.name, "Henry", msg='Name should be Henry')
+    
+    
 if __name__ == "__main__":
   unittest.main()
