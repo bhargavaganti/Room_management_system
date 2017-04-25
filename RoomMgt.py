@@ -31,23 +31,23 @@ class Dojo(object):
       if (room_name == "") or (room_type == ""):
         raise RuntimeError("Couldnt create Room, both Room Name and Room Type needed")
       
-      elif(room_object == "office"):
+      elif(room_type == "office"):
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
-        self.all_offices.append(room_object)
+        self.all_offices.append(room_type)
         self.all_rooms.append(room_object)
         print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
-        return room_object
+        return room_type
       
-      elif(room_object == "Living Space"):
+      elif(room_type == "Living Space"):
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
         self.all_livingSpace.append(room_object)
         self.all_rooms.append(room_object)
         print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
-        return room_object
+        return room_type
     
       
     #To create multiple rooms of the same type at the Dojo   
