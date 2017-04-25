@@ -10,13 +10,13 @@ from RoomMgt import Dojo, Room
 
 class Person(object):
   """Object of everbody at the Dojo"""
-  def __init__(self, person_name):
-    self.name = person_name
+  def __init__(self, args):
+    self.name = args[0]
+    self.person_type = args[1]
       
     
   def add_person(self, *args):
-    """Adding a new person at the dojo"""
-    person_type = args[0]
+    """Adding a new person to the dojo"""
     self.person_name = args[1]
     
     #if the person is a staff, create staff instance
