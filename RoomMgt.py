@@ -57,11 +57,18 @@ class Dojo(object):
         
         return room_object
         
-    def allocate_livingspace(self, employee):
-      shuflle livingsspace list,pick one at random
-      check if ocupants < max numbe
-      add person to room
-      person add room details
+    def allocate_livingspace(self, fellow):
+    """This method allocates a random room to a fellow"""
+      
+      room = random.choice(self.livingspace_list)
+      #if fellow wants living space
+      if fellow.wants_accomodation == None:
+        fellow.livingspace = None
+      
+      #if occupants < rooms max people
+      if len(room.occupants) < room.maxxpeople):
+        room.occupants.append(fellow)
+        fellow.livingspace.append(room)
         
     def allocate_office(self, employee):
       shuflle office list,pick one at random
