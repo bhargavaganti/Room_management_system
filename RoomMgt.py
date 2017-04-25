@@ -23,9 +23,10 @@ class Dojo(object):
 class Room(object):
   """
       Rooms at The Dojo
+      
       attributes:
-      Room name
-      Room Occupants
+        Room name
+        Room Occupants
   """
   def __init__(self, room_name, room_type):
     self.room_name = room_name
