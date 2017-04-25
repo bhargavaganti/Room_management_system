@@ -30,8 +30,9 @@ class Person(object):
     elif self.type = "Fellow":
       wants_accomodation = args[-1]
       if args[-1] == "Y"
-        self.office = dojo.allocate_office()
-        self.livingspace = dojo.allocate_livingspace()
+        dojo.allocate_office(self)
+        dojo.allocate_livingspace(self)
+        
         return self
       else:
         self.office = dojo.allocate_office()
@@ -39,20 +40,17 @@ class Person(object):
         return self
     
 class Staff(Person):
-  """
-    Staff member at andela.     
-    Atrributes:
-    office_space
-    
-  """
-  pass
+  """Staff member at andela. Attributes, First name Last name Type"""
+  def __init__(self, args):
+    self.name = str(args[0]) + " " + str(args[1])
+    self.type = args[2]
 
         
 
 class Fellow(Person):
-  """ Fellow at andela. Atrributes: office_space, wants_accomodation,   living_space
-  """
-  def __init__(self):
+  """ Fellow at andela. Atrributes: office_space, wants_accomodation,   living_space"""
+  def __init__(self, *args):
+    self.name = args[0]
     self.wants_accomodation = None
     
  
