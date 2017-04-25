@@ -7,21 +7,21 @@
 """
 class Dojo(object):
   """This is the Dojo class, and andela facility"""
-  all_rooms = []
-  #def __init__(self):
+  def __init__(self):
+    self.all_rooms = []
   
-  def create_room(room_name, room_type):
+  def create_room(self,room_name, room_type):
     if (room_name == "") or (room_type == ""):
       raise RuntimeError("Couldnt create Room, both Room Name and Room Type needed")
     else:
       room_obj = room_name + "_" + room_type
       room_obj = Room(room_name, room_type)
-      Dojo.all_rooms.append(room_obj)
+      self.all_rooms.append(room_obj)
     
       return room_obj
   
 class Room(object):
-  """ 
+  """
       Rooms at The Dojo
       attributes:
       Room name
