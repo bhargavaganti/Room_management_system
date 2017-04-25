@@ -35,18 +35,20 @@ class Dojo(object):
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
         self.all_offices.append(room_object)
+        self.all_rooms.append(room_object)
         print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
         return room_object
-      else:
+      
+      elif(room_object == "Living Space"):
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
+        self.all_livingSpace.append(room_object)
         self.all_rooms.append(room_object)
         print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
         return room_object
     
-  
       
     #To create multiple rooms of the same type at the Dojo   
     if len(args) > 2:
