@@ -16,7 +16,7 @@ class Dojo(object):
   
   
   def create_room(self, *args):
-    """Create a new room object
+    """Create a room object
       Attributes: room_name, room_type
     """
     
@@ -55,14 +55,6 @@ class Dojo(object):
         room_object = Room(room_name, room_type)
         self.all_rooms.append(room_object)
         
-      return room_object
-      
-    def get_random_office(self):
-      office = random.choice(self.all_offices)
-      return office
-      
-    def get_random_livingSpace(self):
-      livingSpace = random.choice(self.all_livingSpace)
-      return livingSpace
+        return room_object
       
   
