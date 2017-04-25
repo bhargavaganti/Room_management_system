@@ -55,10 +55,10 @@ class Fellow(Person):
   def __init__(self):
     #self.wants_accomodation = wants_accomodation
     self.office_space = ""
-    self.wants_accomodation = 
+    self.wants_accomodation = ""
     if self.wants_accomodation == "Y":
-      self.living_space = ""
+      self.living_space = True
     else:
-      self.living_space = ""
+      self.living_space = False
     
  

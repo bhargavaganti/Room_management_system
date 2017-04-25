@@ -18,6 +18,14 @@ class TestCreateRoom(unittest.TestCase):
     self.assertTrue(blue_office)
     new_room_count = len(dojo.all_rooms)
     self.assertEqual(new_room_count - initial_room_count, 1)
+    
+  def test_create_multiple_rooms_successfully(self):
+    dojo = Dojo()
+    initial_room_count = len(dojo.all_rooms)
+    blue_office = dojo.create_room("Blue","Black","Brown", "office")
+    self.assertTrue(blue_office)
+    new_room_count = len(dojo.all_rooms)
+    self.assertEqual(new_room_count - initial_room_count, 3)
 
   def test_create_room_name_not_given(self):
     dojo = Dojo()
