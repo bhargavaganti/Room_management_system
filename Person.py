@@ -12,23 +12,26 @@ class Person(object):
   """Object of everbody at the Dojo"""
   def __init__(self, args):
     self.name = args[0]
-    self.person_type = args[1]
+    self.type = args[1]
       
     
   def add_person(self, *args):
-    """Adding a new person to the dojo"""
-    self.person_name = args[1]
+    """Adding a new person to the dojo"""    
+    #if the person is staff, create staff instance and allocate room
+    self.name = args[0]
+    self.type = args[1]
     
-    #if the person is a staff, create staff instance
-    if len(args) == 2:
-      office = self.allocate_office()
-      self.office_space = office
+    #if Person is Staff, allocate office
+    if self.type == "Staff":
+      self.office = dojo.allocate_office()
       return self
       
-    #if the person is a fellow, create Fellow instance
-    elif len(args) == 3:
-      wants_accomodation = args[2]
-      self.wants_accomodation = wants_accomodation
+    #if Person is employee, allocate office and living space(optionall)
+    elif self.type = "Fellow":
+      wants_accomodation = args[-1]
+      if args[-1] == "Y"
+        self.office = dojo.allocate_office()
+        self.livingspace = dojo.allocate_livingspace(
       print(self.wants_accomodation)
       return self
 
