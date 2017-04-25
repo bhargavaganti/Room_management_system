@@ -45,5 +45,11 @@ class TestCreateRoom(unittest.TestCase):
     self.assertTrue(Staff_Henry)
     self.assertEqual(Staff_Henry.person_name, "Henry", msg='Name should be Henry')
     
+  def test_adds_Fellow_successfully(self):
+    self.Fellow = Person()
+    fellow_Albert = Fellow.add_person("Fellow", "Albert", "Y")
+    self.assertEqual(self.fellow_Albert.name, "Henry", msg='Name should be Henry')
+    self.assertEqual(fellow_Albert.wants_accomodation, "Y", msg='Name should be Albert')
+    
 if __name__ == "__main__":
   unittest.main()
