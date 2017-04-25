@@ -32,15 +32,11 @@ class Person(object):
       if args[-1] == "Y"
         self.office = dojo.allocate_office()
         self.livingspace = dojo.allocate_livingspace()
-      return self
-
-  def allocate_office(self):
-    print(Dojo.all_rooms)
-    self.office = 'office';
-    return bool(self.office)
-    
-  def allocate_livingSpace(self, livingSpace):
-    self.office = livingSpace;
+        return self
+      else:
+        self.office = dojo.allocate_office()
+        self.livingspace = None
+        return self
     
 class Staff(Person):
   """
