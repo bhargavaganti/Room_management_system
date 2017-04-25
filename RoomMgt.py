@@ -45,19 +45,15 @@ class Dojo(object):
         
         return room_object
     
-      
-    #To create multiple rooms of the same type at the Dojo   
+    #Creating multiple rooms at the Dojo
     if len(args) > 2:
-
-      room_type = (args[len(args)-1]).lower()
-      room_group = args[0:len(args)-1]
+      room_type = args[0]
+      room_group = args[1: args[-1] ]#list of names
       
-      for room_name in room_group:
+      for room in room_group:
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
         self.all_rooms.append(room_object)
-        
-        print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
       return room_object
       
