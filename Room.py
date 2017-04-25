@@ -15,6 +15,7 @@ class Room(object):
   """
   def __init__(self, room_name, room_type):
     self.room_name = room_name
+    self.occupants = []
   
 class livingSpace(Room):
   max_people = 4
