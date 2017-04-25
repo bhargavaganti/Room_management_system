@@ -16,28 +16,24 @@ class Dojo(object):
   
   
   def create_room(self, *args):
-    """
-      This method creates a room at the Dojo
+    """Create a new room object
       Attributes: room_name, room_type
     """
-    # 2 Arguments provided, creates 1 rom only 
+    
+    #When only one room is created
     if len(args) == 2:
       room_name = args[0]
       room_type = args[1]
       
-      #If room_name or type is empty, Raise RunTime Error
+      #If  the room_name or type is empty, Raise RunTime Error
       if (room_name == "") or (room_type == ""):
         raise RuntimeError("Couldnt create Room, both Room Name and Room Type needed")
       
-      #Create an office
-      elif(room_type == "office"):
-        room_object = room_name + "_" + room_type
-        
+      #if Room is an office, Create office object
+      elif room_type == "office":
+        room_object = (room_name + "_" + room_type)
         room_object = Room(room_name, room_type)
-        
-        self.all_offices.append(room_object)
         self.all_rooms.append(room_object)
-        print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
         return room_object
       
