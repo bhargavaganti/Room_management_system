@@ -1,39 +1,40 @@
 """
-  name : room management system.
-  authr : benjamin wacha
-  email: bmwachajr@gmail,com
-  descrption: a system to randomly allocate rooms to andela staff and fellows.
-
+Name        :  Room Allocation system.
+Author      :  Benjamin Wacha
+Github      :  @bmwachajr
+Descrption  :  This is a system used to randomly allocate rooms to new Staff and Fellows at Andela
 """
 import sys
 
 class Dojo(object):
-  """This is the Dojo class, and andela facility"""
+  """This is a class for an Andela Kenya Campus called The Dojo"""
   
-  all_rooms = []
-  #initializa an empty list of all rooms
+  """Dojo constructor"""
   def __init__(self):
-    self.all_livingSpace = []
-    self.all_offices = []
+    self.all_employees = []#list of employees at Dojo
+    self.all_rooms = []
   
   
   def create_room(self, *args):
-    """This method creates a room at the Dojo
-      
-    Attributes: room_name, room_type
     """
-    #To create only a single room at the Dojo 
+      This method creates a room at the Dojo
+      Attributes: room_name, room_type
+    """
+    # 2 Arguments provided, creates 1 rom only 
     if len(args) == 2:
       room_name = args[0]
-      room_type = (args[1]).lower()
+      room_type = args[1]
       
-      #Donot create rooms at the dojo is name or type is empty
+      #If room_name or type is empty, Raise RunTime Error
       if (room_name == "") or (room_type == ""):
         raise RuntimeError("Couldnt create Room, both Room Name and Room Type needed")
       
+      #Create an office
       elif(room_type == "office"):
         room_object = room_name + "_" + room_type
+        
         room_object = Room(room_name, room_type)
+        
         self.all_offices.append(room_object)
         self.all_rooms.append(room_object)
         print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
