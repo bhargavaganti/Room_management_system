@@ -17,14 +17,14 @@ class Room(object):
     self.name = room_name
     self.occupants = []
   
-class livingSpace(Room):
+class livingspace(Room):
   """Living space instance at the dojo"""
   max_people = 4
   
   def __init__(self, room_name)
     self.name = room_name
     
-class Office(Room):
+class office(Room):
   """office instance at the dojo"""
   max_people = 6
   

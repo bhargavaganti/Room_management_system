@@ -11,7 +11,6 @@ class Dojo(object):
   
   """Dojo constructor"""
   def __init__(self):
-    self.all_employees = []#list of employees at Dojo
     self.all_rooms = []
   
   
