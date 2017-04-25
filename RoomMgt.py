@@ -37,12 +37,11 @@ class Dojo(object):
         
         return room_object
       
+      #if Room is a living space, Create living space object
       elif(room_type == "living space"):
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
-        self.all_livingSpace.append(room_object)
         self.all_rooms.append(room_object)
-        print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
         return room_object
     
