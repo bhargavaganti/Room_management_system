@@ -25,7 +25,7 @@ class Dojo(object):
     #To create only a single room at the Dojo 
     if len(args) == 2:
       room_name = args[0]
-      room_type = args[1]
+      room_type = (args[1]).lower()
       
       #Donot create rooms at the dojo is name or type is empty
       if (room_name == "") or (room_type == ""):
@@ -34,26 +34,26 @@ class Dojo(object):
       elif(room_type == "office"):
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
-        self.all_offices.append(room_type)
+        self.all_offices.append(room_object)
         self.all_rooms.append(room_object)
         print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
-        return room_type
+        return room_object
       
-      elif(room_type == "Living Space"):
+      elif(room_type == "living space"):
         room_object = room_name + "_" + room_type
         room_object = Room(room_name, room_type)
         self.all_livingSpace.append(room_object)
         self.all_rooms.append(room_object)
         print ("An " + room_type + " called " + room_name + " has been created successfully \n" )
         
-        return room_type
+        return room_object
     
       
     #To create multiple rooms of the same type at the Dojo   
     if len(args) > 2:
 
-      room_type = args[len(args)-1]
+      room_type = (args[len(args)-1]).lower()
       room_group = args[0:len(args)-1]
       
       for room_name in room_group:
