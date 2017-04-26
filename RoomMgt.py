@@ -8,7 +8,7 @@ import sys
 import random
 from  Room import Room, livingspace, office
 from  Person import Person, Staff, Fellow
-
+from docopt import docopt
 
 class Dojo():
   """This is a class for an Andela Kenya Campus called The Dojo"""
@@ -58,17 +58,20 @@ class Dojo():
       room_group = args[0: -1]#list of names
       
       for room in room_group:
-        room_object = room + "_" + room_type
-        room_object = Room(room, room_type)
+        if room.lower() in self.office_list:
+          pass
+        else:
+          room_object = room + "_" + room_type
+          room_object = Room(room, room_type)
 
-        if (room_type == "office"):
-          self.office_list.append(room_object)
-        
-        if(room_type == "livingspace"):
-          self.livingspace_list.append(room_object)
+          if (room_type == "office"):
+            self.office_list.append(room_object)
           
-        self.all_rooms.append(room_object)
-        
+          if(room_type == "livingspace"):
+            self.livingspace_list.append(room_object)
+            
+          self.all_rooms.append(room_object)
+          
       return (room_object)
 
   def add_person(self, *args):
@@ -87,7 +90,6 @@ class Dojo():
     #if Person is employee, allocate office and living space(optionall)
     if person_type == "Fellow":
       wants_accomodation = args[-1]
-      print (wants_accomodation)
 
       Fellow_object = Fellow(person_type, person_name)
       Fellow_object.office = self.allocate_office(Fellow_object)
@@ -108,7 +110,7 @@ class Dojo():
       #if occupants < rooms max people
       if len(random_room.occupants) < max_occupants:
         allocate = True
-        
+         
     random_room.occupants.append(fellow)
     return random_room.name
       

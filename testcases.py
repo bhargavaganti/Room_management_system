@@ -90,6 +90,15 @@ class TestCreateRoom(unittest.TestCase):
     self.assertEqual(fellow_Albert.name, "Albert", msg='Name should be Henry')
     self.assertNotEqual(fellow_Albert.livingspace, None, msg='Name should be Albert')
     self.assertNotEqual(fellow_Albert.office, None, msg='Name should be Albert')
+    
+  def test_creates_Fellow_with_no_livingsapcesuccessfully(self):
+    dojo = Dojo()
+    multiple_offices = dojo.create_room("Blue","Black","Brown", "office")
+    multiple_offices = dojo.create_room("Blue","Black","Brown", "livingspace")
+    fellow_Albert = dojo.add_person("Fellow", "Albert")
+    self.assertEqual(fellow_Albert.name, "Albert", msg='Name should be Henry')
+    self.assertEqual(fellow_Albert.livingspace, None, msg='Name should be Albert')
+    self.assertNotEqual(fellow_Albert.office, None, msg='Name should be Albert')
 
 if __name__ == "__main__":
   unittest.main()
