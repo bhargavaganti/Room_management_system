@@ -28,7 +28,7 @@ class TestCreateRoom(unittest.TestCase):
     blue_office = dojo.create_room("Blue","Black","Brown", "office")
     self.assertTrue(blue_office)
     new_room_count = len(dojo.all_rooms)
-    self.assertEqual(new_room_count - initial_room_count, 1)
+    self.assertEqual(new_room_count - initial_room_count, 3)
     
   def test_create_multiple_livingspace_successfully(self):
     dojo = Dojo()
@@ -36,7 +36,7 @@ class TestCreateRoom(unittest.TestCase):
     blue_office = dojo.create_room("Blue","Black","Brown", "livingspace")
     self.assertTrue(blue_office)
     new_room_count = len(dojo.all_rooms)
-    self.assertEqual(new_room_count - initial_room_count, 1)
+    self.assertEqual(new_room_count - initial_room_count, 3)
 
   def test_create_room_name_with_no_name(self):
     dojo = Dojo()
@@ -73,21 +73,23 @@ class TestCreateRoom(unittest.TestCase):
     self.assertTrue(red_livingspace)
     new_room_count = len(dojo.livingspace_list)
     self.assertEqual(new_room_count - initial_room_count, 1)
-    
+
   def test_adds_Staff_successfully(self):
     dojo = Dojo()
-    blue_office = dojo.create_room("Blue","Black","Brown", "office")
-    Staff_Henry = Staff(dojo, "staff", "Henry")
+    dojo.create_room("Blue","Black","Brown", "office")
+    Staff_Henry = dojo.add_person("Staff", "Henry")
     self.assertTrue(Staff_Henry)
     self.assertEqual(Staff_Henry.name, "Henry", msg='Name should be Henry')
-    self.assertEqual(Staff_Henry.office_space, True, msg='No office allocated')
-  """
+    self.assertNotEqual(Staff_Henry.office, None, msg='No office allocated')
+
   def test_creates_Fellow_successfully(self):
     dojo = Dojo()
+    multiple_offices = dojo.create_room("Blue","Black","Brown", "office")
     multiple_offices = dojo.create_room("Blue","Black","Brown", "livingspace")
-    fellow_Albert = Fellow("Fellow", "Albert", "Y")
+    fellow_Albert = dojo.add_person("Fellow", "Albert", "Y")
     self.assertEqual(fellow_Albert.name, "Albert", msg='Name should be Henry')
-    self.assertEqual(fellow_Albert.wants_accomodation, "Y", msg='Name should be Albert')
-"""
+    self.assertNotEqual(fellow_Albert.livingspace, None, msg='Name should be Albert')
+    self.assertNotEqual(fellow_Albert.office, None, msg='Name should be Albert')
+
 if __name__ == "__main__":
   unittest.main()

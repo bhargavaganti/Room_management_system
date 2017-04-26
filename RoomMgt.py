@@ -6,9 +6,11 @@ Descrption  :  This is a system used to randomly allocate rooms to new Staff and
 """
 import sys
 import random
-from  Room import Room
+from  Room import Room, livingspace, office
+from  Person import Person, Staff, Fellow
 
-class Dojo(object):
+
+class Dojo():
   """This is a class for an Andela Kenya Campus called The Dojo"""
   
   """Dojo constructor"""
@@ -35,7 +37,7 @@ class Dojo(object):
       #if Room is an office, Create office object
       elif (room_type == "office"):
         room_object = (room_name + "_" + room_type)
-        room_object = Room(room_name, room_type)
+        room_object = office(room_name, room_type)
         self.office_list.append(room_object)
         self.all_rooms.append(room_object)
         
@@ -44,7 +46,7 @@ class Dojo(object):
       #if Room is a living space, Create living space object
       elif(room_type == "livingspace"):
         room_object = room_name + "_" + room_type
-        room_object = Room(room_name, room_type)
+        room_object = livingspace(room_name, room_type)
         self.livingspace_list.append(room_object)
         self.all_rooms.append(room_object)
         
@@ -67,26 +69,60 @@ class Dojo(object):
           
         self.all_rooms.append(room_object)
         
-        return room_object
+      return (room_object)
+
+  def add_person(self, *args):
+    """Adding a new person to the dojo and allocate rooms"""    
+    #get staff name and staff type
+    person_type = args[0]
+    person_name = args[1]
+    
+    #if Person is Staff, allocate office
+    if person_type == "Staff":
+      Staff_object = Staff(person_type, person_name)
+      Staff_object.office = self.allocate_office(Staff_object)
+      return Staff_object
+      
+      
+    #if Person is employee, allocate office and living space(optionall)
+    if person_type == "Fellow":
+      wants_accomodation = args[-1]
+      print (wants_accomodation)
+
+      Fellow_object = Fellow(person_type, person_name)
+      Fellow_object.office = self.allocate_office(Fellow_object)
+      
+      if args[-1] == "Y":
+        Fellow_object.livingspace = self.allocate_livingspace(Fellow_object)
+  
+      return Fellow_object
         
+
   def allocate_livingspace(self, fellow):
     """This method allocates a random room to a fellow"""
+    max_occupants = 4
+    random_room = random.choice(self.livingspace_list)
     
-    room = random.choice(self.livingspace_list)
-    #if fellow wants living space
-    if fellow.wants_accomodation == None:
-      fellow.livingspace = None
-    
-    #if occupants < rooms max people
-    if len(room.occupants) < room.maxxpeople:
-      room.occupants.append(fellow)
-      fellow.livingspace.append(room)
+    allocate = False
+    while allocate == False:
+      #if occupants < rooms max people
+      if len(random_room.occupants) < max_occupants:
+        allocate = True
+        
+    random_room.occupants.append(fellow)
+    return random_room.name
       
   def allocate_office(self, person):
     """This method allocates a random office to a both staff and fellows"""
+    max_occupants = 6
+    allocate = False
+    while allocate == False:
+      random_room = random.choice(self.office_list)
+      if len(random_room.occupants) < max_occupants:
+        allocate = True
+        
+    random_room.occupants.append(person)
+    return random_room.name
+
     
-    room = random.choice(self.office_list)
-    #if fellow wants living space
-    room.occupants.append(person)
-    person.livingspace.append(room)
-  
+ 
