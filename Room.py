@@ -24,7 +24,8 @@ class livingspace(Room):
   
   def __init__(self, room_name, room_type):
     self.name = room_name
-    self.name = room_type
+    self.type = room_type
+    self.occupants= []
     
 class office(Room):
   """office instance at the dojo"""
@@ -33,3 +34,4 @@ class office(Room):
     selfmax_people = 6
     self.name = room_name  
     self.type = room_type
+    self.occupants= []
