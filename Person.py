@@ -6,13 +6,16 @@
 """
 
 import sys
-from RoomMgt import Dojo, Room
+from RoomMgt import Dojo
 
-class Person(object):
+class Person(Dojo):
   """Object of everbody at the Dojo"""
-  def __init__(self, args):
-    self.name = args[0]
-    self.type = args[1]
+  def __init__(self, *args):
+    if len(args) > 1:
+      self.name = args[0]
+      self.type = args[1]
+
+
       
     
   def add_person(self, *args):
@@ -30,10 +33,10 @@ class Person(object):
     elif self.type == "Fellow":
       wants_accomodation = args[-1]
       if args[-1] == "Y":
-        dojo.allocate_office(self)
-        dojo.allocate_livingspace(self)
-        
+        dojo.allocate_office(dojo, self)
+        dojo.allocate_livingspace(dojo, self)
         return self
+        
       else:
         self.office = dojo.allocate_office()
         self.livingspace = None
@@ -41,16 +44,19 @@ class Person(object):
     
 class Staff(Person):
   """Staff member at andela. Attributes, First name Last name Type"""
-  def __init__(self, args):
-    self.name = str(args[0]) + " " + str(args[1])
-    self.type = args[2]
+  def __init__(self, *args):
+    if len(args) > 1:
+      self.name = args[1]
+      self.type = args[0]
+      self.office = dojo.allocate_office(Dojo, self)
 
         
 
 class Fellow(Person):
   """ Fellow at andela. Atrributes: office_space, wants_accomodation,   living_space"""
   def __init__(self, *args):
-    self.name = args[0]
-    self.wants_accomodation = None
+    if len(args) > 1:
+      self.name = args[1]
+      self.wants_accomodation = Dojo.allocate_livingspace(Dojo, self)
     
  

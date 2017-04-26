@@ -11,6 +11,7 @@ class Room(object):
   Rooms at The Dojo
   Attributes:
   Room name
+  Room type
   Room Occupants
   """
   def __init__(self, room_name, room_type):
@@ -21,12 +22,12 @@ class livingspace(Room):
   """Living space instance at the dojo"""
   max_people = 4
   
-  def __init__(self, room_name)
+  def __init__(self, room_name):
     self.name = room_name
     
 class office(Room):
   """office instance at the dojo"""
   max_people = 6
   
-  def __init__(self, room_name)
+  def __init__(self, room_name):
     self.name = room_name  
