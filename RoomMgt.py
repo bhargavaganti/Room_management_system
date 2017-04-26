@@ -38,6 +38,7 @@ class Dojo():
     self.office_list = []
     self.all_rooms = []
     self.livingspace_list = []
+    self.allocated_list = []
   
   
   def create_room(self, *args):
@@ -119,7 +120,6 @@ class Dojo():
   
       return Fellow_object
         
-
   def allocate_livingspace(self, fellow):
     """This method allocates a random room to a fellow"""
     max_occupants = 4
@@ -145,6 +145,23 @@ class Dojo():
         
     random_room.occupants.append(person)
     return random_room.name
+    
+  def get_occupants(self, room_name):
+    for livingspace in self.all_rooms:    
+      if livingspace.name == room_name:
+        fellow_list = []
+        for occupant in livingspace.occupants:
+          fellow_list.append(occupant.name)
+        return fellow_list
+  """      
+  def get_allocated(self):
+    for person in allocated_list:
+        print (person.name)
+          
+  def get_unallocated(self):
+    for person in unallocated_list:
+        print (person.name)
+  """  
 
    
  
