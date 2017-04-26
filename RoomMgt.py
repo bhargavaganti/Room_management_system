@@ -153,11 +153,19 @@ class Dojo():
         for occupant in livingspace.occupants:
           fellow_list.append(occupant.name)
         return fellow_list
-  """      
-  def get_allocated(self):
-    for person in allocated_list:
-        print (person.name)
+        
+  def get_allocated_rooms(self):
+    print (len(self.all_rooms))
+    for room in self.all_rooms:
+      occupant_list = []
+      if len(room.occupants) > 0:
+        print(room.name)
+        print("_____________________________________________")
+        for occupant in room.occupants:
+          occupant_list.append(occupant.name)
+        print(occupant_list)
           
+  """      
   def get_unallocated(self):
     for person in unallocated_list:
         print (person.name)
