@@ -10,8 +10,6 @@ from RoomMgt import Dojo
 from Person import Person, Staff, Fellow
 
 class TestCreateRoom(unittest.TestCase):
-  def SetUp():
-    dojo = dDjo()
     
   
   def test_create_room_successfully(self):

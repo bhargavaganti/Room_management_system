@@ -3,12 +3,32 @@ Name        :  Room Allocation system.
 Author      :  Benjamin Wacha
 Github      :  @bmwachajr
 Descrption  :  This is a system used to randomly allocate rooms to new Staff and Fellows at Andela
+
 """
+#!/usr/bin/env python
+"""
+
+Usage:
+  RoomMgt.py create_room <room_type> <room_name> ...
+  RoomMgt.py add_person <room_type> <room_name> ...
+  my_program
+  my_program (-h | --help | --version)
+
+Options:
+
+  -i, --interactive  Interactive Mode
+  -h, --help  Show this screen and exit.
+  --baud=<n>  Baudrate [default: 9690]
+  --timeout=<seconds> Time [default: 30]
+
+"""
+
 import sys
+import cmd
+from docopt import docopt, DocoptExit
 import random
 from  Room import Room, livingspace, office
 from  Person import Person, Staff, Fellow
-from docopt import docopt
 
 class Dojo():
   """This is a class for an Andela Kenya Campus called The Dojo"""
@@ -126,5 +146,5 @@ class Dojo():
     random_room.occupants.append(person)
     return random_room.name
 
-    
+   
  
