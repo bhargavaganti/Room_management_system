@@ -62,10 +62,10 @@ class DojoCLI(cmd.Cmd):
     output = dojo.create_room(room_list, room_type, )
     if output.type == "office":
       for name in output.name:
-        print("An office called " + name + " has been successfully created!")
+        print("\nAn office called " + name + " has been successfully created! \n")
     if output.type == "livingspace":
       for name in output.name:
-        print("A livingspace called " + name + " has been successfully created!")
+        print("\nA livingspace called " + name + " has been successfully created!")
   
   @docopt_cmd 
   def do_add_person(self, arg):
@@ -74,10 +74,10 @@ class DojoCLI(cmd.Cmd):
     person_type = arg['<person_type>']
     wants_accomodation = arg['<wants_accomodation>']
     output = dojo.add_person( person_type, person_name, wants_accomodation)
-    print( output.type + " " + output.name + " has been successfully created!")
-    print( output.name + " has been allocated the Office " + output.office[0])
+    print( "\n" + output.type + " " + output.name + " has been successfully created!\n")
+    print( "\n" + output.name + " has been allocated the Office " + output.office[0] + "\n")
     if output.type == "Fellow":
-      print( output.name + " has been allocated the livingspace " + output.livingspace[0])
+      print( "\n" + output.name + " has been allocated the livingspace " + output.livingspace[0] + "\n")
       
 
   
@@ -88,7 +88,7 @@ class DojoCLI(cmd.Cmd):
     output = dojo.get_occupants(room_name)
     print(room_name)
     print("__________________________________")
-    print(output)
+    print("\n" + output + "\n")
   
   @docopt_cmd 
   def do_print_rooms(self, arg):
@@ -111,7 +111,7 @@ class DojoCLI(cmd.Cmd):
   """"
   @docopt_cmd 
   def do_reallocate_person(self, arg):
-    """Usage:  reallocate_person <first_name> <last_name> <new_room_name> """
+    ""Usage:  reallocate_person <first_name> <last_name> <new_room_name> ""
     person_name = arg['<first_name>'] + " " + arg['<last_name>']
     new_room_name = arg['<new_room_name>']
     output = dojo.reallocate_person(person_name, new_room_name)
