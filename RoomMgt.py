@@ -129,7 +129,7 @@ class Dojo():
     for room in self.all_rooms:    
       if room.name == room_name:
         fellow_list = []
-        for occupant in livingspace.occupants:
+        for occupant in room.occupants:
           fellow_list.append(occupant.name)
         return fellow_list
         
