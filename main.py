@@ -4,7 +4,7 @@ Usage:
   RoomMgt create_room <room_type> <room_name> ...
   RoomMgt add_person <person_name> <FELLOW_or_STAFF> [<wants_accomodation>]
   RoomMgt add_person <person_name> 
-  RoomMgt get_occupants <room_name>
+  RoomMgt print_room <room_name>
   RoomMgt get_rooms
 
 """
@@ -83,7 +83,7 @@ class DojoCLI(cmd.Cmd):
   
   @docopt_cmd 
   def do_get_occupants(self, arg):
-    """Usage:  get_occupants <room_name>"""
+    """Usage:  print_room <room_name>"""
     room_name = arg['<room_name>']
     output = dojo.get_occupants(room_name)
     print(room_name)
@@ -91,12 +91,31 @@ class DojoCLI(cmd.Cmd):
     print(output)
   
   @docopt_cmd 
-  def do_get_rooms(self, arg):
+  def do_print_rooms(self, arg):
     """Usage:  get_rooms """
     output = dojo.get_all_rooms()
     for room in output:
       print(room.name)
-
+  
+  @docopt_cmd 
+  def do_print_allocations(self, arg):
+    """Usage:  print_allocations """
+    output = dojo.get_all_rooms()
+    for room in output:
+      occupant_list = []
+      print(room.name)
+      print("_____________________________________________")
+      for occupant in room.occupants:
+        occupant_list.append(occupant.name)
+      print(occupant_list)
+  """"
+  @docopt_cmd 
+  def do_reallocate_person(self, arg):
+    """Usage:  reallocate_person <first_name> <last_name> <new_room_name> """
+    person_name = arg['<first_name>'] + " " + arg['<last_name>']
+    new_room_name = arg['<new_room_name>']
+    output = dojo.reallocate_person(person_name, new_room_name)
+    print( output.name + " has been reallocated the room " + room_name)"""
     
     
   def do_quit(self, arg):

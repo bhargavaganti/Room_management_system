@@ -21,6 +21,7 @@ class Dojo():
     self.all_rooms = []
     self.livingspace_list = []
     self.allocated_list = []
+    self.people = []
   
   
   def create_room(self, *args):
@@ -30,7 +31,7 @@ class Dojo():
     
     #When only one room is created
     if len(args) == 2:
-      room_name = (args[0]).lower()
+      room_name = args[0]
       room_type = args[1]
       
       #If  the room_name or type is empty, Raise RunTime Error
@@ -83,6 +84,7 @@ class Dojo():
     if person_type == "staff":
       Staff_object = Staff(person_type, person_name)
       Staff_object.office = self.allocate_office(Staff_object)
+      self.people.append(Staff_object)
       return Staff_object
       
       
@@ -96,6 +98,7 @@ class Dojo():
       if args[-1] == "Y":
         Fellow_object.livingspace = self.allocate_livingspace(Fellow_object)
   
+      self.people.append(Fellow_object)
       return Fellow_object
         
   def allocate_livingspace(self, fellow):
@@ -136,21 +139,39 @@ class Dojo():
         return fellow_list
         
   def get_allocated_rooms(self):
-    print (len(self.all_rooms))
+    allocated = []
     for room in self.all_rooms:
-      occupant_list = []
       if len(room.occupants) > 0:
-        print(room.name)
-        print("_____________________________________________")
-        for occupant in room.occupants:
-          occupant_list.append(occupant.name)
-        print(occupant_list)
-          
-  """      
-  def get_unallocated(self):
-    for person in unallocated_list:
-        print (person.name)
-  """  
-
+        allocated.append(room)
+    return allocated
+    
+  def get_room(self, room_name):
+    for room in self.all_rooms:
+      if room.name == room_name :
+        return room
+    return None
+    
+  def get_person(self, person_name):
+    for person in self.people:
+      if person.name == person_name :
+        return person
+    return None
+      
+  def reallocate_person(self, person_name, new_room):
+    person = self.get_person(person_name)
+    room = self.get_room(new_room)
+    if room != None and person != None:
+      if room.type == "office":
+        person.office = room.name
+        room.occupants.append(person)
+      
+      if (room.type == livingspace) and (person.type == "fellow"):
+        person.living = room.name
+        room.occupants.append(person)
+      
+      return None
+    else:
+      raise ("Person or Room Not Found")
+      
    
  

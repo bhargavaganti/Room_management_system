@@ -101,7 +101,15 @@ class TestCreateRoom(unittest.TestCase):
     dojo = Dojo()
     office = dojo.create_room("Black", "office")
     fellow1 = dojo.add_person("Staff", "Albert")
-    self.assertEqual(dojo.get_occupants("black"), ['Albert'], msg='Couldnot get occupants')
+    self.assertEqual(dojo.get_occupants("Black"), ['Albert'], msg='Couldnot get occupants')
+
+  def test_reallocate_person(self):
+    dojo = Dojo()
+    office = dojo.create_room("Black", "office")
+    staff = dojo.add_person("Staff", "Albert")
+    office = dojo.create_room("Orange", "office")
+    dojo.reallocate_person("Albert", "Orange")
+    self.assertEqual(staff.office, 'Orange', msg='Name should be Albert')
 
 if __name__ == "__main__":
   unittest.main()
