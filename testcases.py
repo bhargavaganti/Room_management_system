@@ -20,7 +20,7 @@ class TestCreateRoom(unittest.TestCase):
     new_room_count = len(dojo.all_rooms)
     self.assertEqual(new_room_count - initial_room_count, 1)
     
-  def test_create_multiple_offices_successfully(self):
+  def test_create_multiple_offices(self):
     dojo = Dojo()
     initial_room_count = len(dojo.all_rooms)
     blue_office = dojo.create_room("Blue","Black","Brown", "office")
@@ -28,7 +28,7 @@ class TestCreateRoom(unittest.TestCase):
     new_room_count = len(dojo.all_rooms)
     self.assertEqual(new_room_count - initial_room_count, 3)
     
-  def test_create_multiple_livingspace_successfully(self):
+  def test_create_multiple_livingspace(self):
     dojo = Dojo()
     initial_room_count = len(dojo.all_rooms)
     blue_office = dojo.create_room("Blue","Black","Brown", "livingspace")
@@ -36,7 +36,7 @@ class TestCreateRoom(unittest.TestCase):
     new_room_count = len(dojo.all_rooms)
     self.assertEqual(new_room_count - initial_room_count, 3)
 
-  def test_create_room_name_with_no_name(self):
+  def test_create_nameless_room(self):
     dojo = Dojo()
     with self.assertRaises(RuntimeError) as context:
       empty_office = dojo.create_room("","")
@@ -46,17 +46,7 @@ class TestCreateRoom(unittest.TestCase):
           'Both Room Name and Room Type must be given'
       )
       
-  def test_create_room_type_not_given(self):
-    dojo = Dojo()
-    with self.assertRaises(RuntimeError) as context:
-      no_type_office = dojo.create_room("no_type", "")
-      self.assertEqual(
-          'Couldnt create Room.',
-          context.exception.message,
-          'Both Room Name and Room Type must be given'
-      )
-      
-  def test_office_room_adds_to_office_list(self):
+  def test_adds_room_to_office_list(self):
     dojo = Dojo()
     initial_room_count = len(dojo.all_rooms)
     red_office = dojo.create_room("Red", "office")
@@ -64,7 +54,7 @@ class TestCreateRoom(unittest.TestCase):
     new_room_count = len(dojo.all_rooms)
     self.assertEqual(new_room_count - initial_room_count, 1)
       
-  def test_living_space_adds_to_livngSpace_list(self):
+  def test_adds_room_to_livngSpace_list(self):
     dojo = Dojo()
     initial_room_count = len(dojo.livingspace_list)
     red_livingspace = dojo.create_room("Red", "livingspace")
@@ -80,32 +70,39 @@ class TestCreateRoom(unittest.TestCase):
     self.assertEqual(Staff_Henry.name, "Henry", msg='Name should be Henry')
     self.assertNotEqual(Staff_Henry.office, None, msg='No office allocated')
 
-  def test_creates_Fellow_successfully(self):
+  def test_adds_Fellow_successfully(self):
     dojo = Dojo()
-    multiple_offices = dojo.create_room("Blue","Black","Brown", "office")
-    multiple_livingspaces = dojo.create_room("Blue","Black","Brown", "livingspace")
+    office = dojo.create_room("Blue","Black")
+    livingspaces = dojo.create_room("Pink","Purple")
     fellow_Albert = dojo.add_person("Fellow", "Albert", "Y")
-    self.assertEqual(fellow_Albert.name, "Albert", msg='Name should be Henry')
     self.assertNotEqual(fellow_Albert.livingspace, None, msg='Name should be Albert')
     self.assertNotEqual(fellow_Albert.office, None, msg='Name should be Albert')
     
-  def test_creates_Fellow_with_no_accomodation_successfully(self):
+  def test_adds_Fellow_with_no_accomodation(self):
     dojo = Dojo()
-    multiple_offices = dojo.create_room("Blue","Black","Brown", "office")
-    multiple_livingspaces = dojo.create_room("Blue","Black","Brown", "livingspace")
+    offices = dojo.create_room("Blue")
+    livingspaces = dojo.create_room("Harambe")
+    fellow_Albert = dojo.add_person("Fellow", "Albert", "N")
+    self.assertEqual(fellow_Albert.name, "Albert", msg='Name should be Henry')
+    self.assertEqual(fellow_Albert.livingspace, None, msg='Name should be Albert')
+    self.assertNotEqual(fellow_Albert.office, None, msg='Name should be Albert')
+    
+  def test_adds_Fellow_with_no_accomodation(self):
+    dojo = Dojo()
+    offices = dojo.create_room("Blue")
+    livingspaces = dojo.create_room("Harambe")
     fellow_Albert = dojo.add_person("Fellow", "Albert")
     self.assertEqual(fellow_Albert.name, "Albert", msg='Name should be Henry')
     self.assertEqual(fellow_Albert.livingspace, None, msg='Name should be Albert')
     self.assertNotEqual(fellow_Albert.office, None, msg='Name should be Albert')
 
-  def test_checks_occupants_in_room(self):
+  def test_gets_occupants(self):
     dojo = Dojo()
     living_space = dojo.create_room("Brown", "livingspace")
     office = dojo.create_room("Brown", "office")
     fellow1 = dojo.add_person("Fellow", "Albert", "Y")
     fellow2 = dojo.add_person("Fellow", "Arthur", "Y")
     fellow3 = dojo.add_person("Fellow", "Albino", "Y")
-    fellow4 = dojo.add_person("Fellow", "Benjamin", "Y")
     self.assertEqual(dojo.get_occupants("Brown"), ['Albert', 'Arthur', 'Albino', 'Benjamin'], msg='Couldnot get occupants')
 
 if __name__ == "__main__":

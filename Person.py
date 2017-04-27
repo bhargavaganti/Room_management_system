@@ -20,14 +20,14 @@ class Staff(Person):
   """Staff member at andela. Attributes, First name Last name Type"""
   def __init__(self, staff_type, staff_name):
     self.name = staff_name
-    self.type = staff_type
+    self.type = "Staff"
     self.office = ''
 
 class Fellow(Person):
   """ Fellow at andela. Atrributes: office_space, wants_accomodation,   living_space"""
   def __init__(self, *args):
-    self.type = args[0]
+    self.type = "Fellow"
     self.name = args[1]
-    self.livingspace = None
+    self.livingspace = "None"
     
  

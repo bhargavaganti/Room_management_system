@@ -3,24 +3,6 @@ Name        :  Room Allocation system.
 Author      :  Benjamin Wacha
 Github      :  @bmwachajr
 Descrption  :  This is a system used to randomly allocate rooms to new Staff and Fellows at Andela
-
-"""
-#!/usr/bin/env python
-"""
-
-Usage:
-  RoomMgt.py create_room <room_type> <room_name> ...
-  RoomMgt.py add_person <room_type> <room_name> ...
-  my_program
-  my_program (-h | --help | --version)
-
-Options:
-
-  -i, --interactive  Interactive Mode
-  -h, --help  Show this screen and exit.
-  --baud=<n>  Baudrate [default: 9690]
-  --timeout=<seconds> Time [default: 30]
-
 """
 
 import sys
@@ -57,7 +39,6 @@ class Dojo():
       
       #if Room is an office, Create office object
       elif (room_type == "office"):
-        room_object = (room_name + "_" + room_type)
         room_object = office(room_name, room_type)
         self.office_list.append(room_object)
         self.all_rooms.append(room_object)
@@ -66,7 +47,6 @@ class Dojo():
       
       #if Room is a living space, Create living space object
       elif(room_type == "livingspace"):
-        room_object = room_name + "_" + room_type
         room_object = livingspace(room_name, room_type)
         self.livingspace_list.append(room_object)
         self.all_rooms.append(room_object)
@@ -96,20 +76,19 @@ class Dojo():
       return (room_object)
 
   def add_person(self, *args):
-    """Adding a new person to the dojo and allocate rooms"""    
-    #get staff name and staff type
-    person_type = args[0]
+    """Adding a new person to the dojo and allocate rooms"""
+    person_type = (args[0]).lower()
     person_name = args[1]
     
-    #if Person is Staff, allocate office
-    if person_type == "Staff":
+    #if Person is Staff, add andallocate office
+    if person_type == "staff":
       Staff_object = Staff(person_type, person_name)
       Staff_object.office = self.allocate_office(Staff_object)
       return Staff_object
       
       
     #if Person is employee, allocate office and living space(optionall)
-    if person_type == "Fellow":
+    if person_type == "fellow":
       wants_accomodation = args[-1]
 
       Fellow_object = Fellow(person_type, person_name)
@@ -147,8 +126,8 @@ class Dojo():
     return random_room.name
     
   def get_occupants(self, room_name):
-    for livingspace in self.all_rooms:    
-      if livingspace.name == room_name:
+    for room in self.all_rooms:    
+      if room.name == room_name:
         fellow_list = []
         for occupant in livingspace.occupants:
           fellow_list.append(occupant.name)
