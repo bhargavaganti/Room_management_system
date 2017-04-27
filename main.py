@@ -5,6 +5,7 @@ Usage:
   RoomMgt add_person <person_name> <FELLOW_or_STAFF> [<wants_accomodation>]
   RoomMgt add_person <person_name> 
   RoomMgt get_occupants <room_name>
+  RoomMgt get_rooms
 
 """
 
@@ -88,6 +89,13 @@ class DojoCLI(cmd.Cmd):
     print(room_name)
     print("__________________________________")
     print(output)
+  
+  @docopt_cmd 
+  def do_get_rooms(self, arg):
+    """Usage:  get_rooms """
+    output = dojo.get_all_rooms()
+    for room in output:
+      print(room.name)
 
     
     

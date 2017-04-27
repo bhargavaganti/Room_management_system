@@ -99,13 +99,9 @@ class TestCreateRoom(unittest.TestCase):
 
   def test_gets_occupants(self):
     dojo = Dojo()
-    living_space = dojo.create_room("Brown", "livingspace")
     office = dojo.create_room("Black", "office")
-    fellow1 = dojo.add_person("Fellow", "Albert", "Y")
-    fellow2 = dojo.add_person("Fellow", "Arthur", "Y")
-    fellow3 = dojo.add_person("Fellow", "Albino", "Y")
-    fellow4 = dojo.add_person("Fellow", "Benjamin", "Y")
-    self.assertEqual(dojo.get_occupants("Brown"), ['Albert', 'Arthur', 'Albino', 'Benjamin'], msg='Couldnot get occupants')
+    fellow1 = dojo.add_person("Staff", "Albert")
+    self.assertEqual(dojo.get_occupants("black"), ['Albert'], msg='Couldnot get occupants')
 
 if __name__ == "__main__":
   unittest.main()

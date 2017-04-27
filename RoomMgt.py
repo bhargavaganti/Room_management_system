@@ -30,7 +30,7 @@ class Dojo():
     
     #When only one room is created
     if len(args) == 2:
-      room_name = args[0]
+      room_name = (args[0]).lower()
       room_type = args[1]
       
       #If  the room_name or type is empty, Raise RunTime Error
@@ -59,11 +59,11 @@ class Dojo():
       room_group = args[0: -1]#list of names
       
       for room in room_group:
-        if room.lower() in self.office_list:
-          pass
+        if room.lower() in self.all_rooms:
+          retutn ("A Room with this name exists")
         else:
-          room_object = room + "_" + room_type
           room_object = Room(room, room_type)
+          self.all_rooms.append(room_object)
 
           if (room_type == "office"):
             self.office_list.append(room_object)
@@ -71,9 +71,8 @@ class Dojo():
           if(room_type == "livingspace"):
             self.livingspace_list.append(room_object)
             
-          self.all_rooms.append(room_object)
           
-      return (room_object)
+      return room_object
 
   def add_person(self, *args):
     """Adding a new person to the dojo and allocate rooms"""
@@ -125,6 +124,9 @@ class Dojo():
     random_room.occupants.append(person)
     return random_room.name
     
+  def get_all_rooms(self):  
+    return self.all_rooms
+   
   def get_occupants(self, room_name):
     for room in self.all_rooms:    
       if room.name == room_name:
