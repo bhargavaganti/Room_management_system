@@ -145,29 +145,47 @@ class Dojo():
         allocated.append(room)
     return allocated
     
+    
   def get_room(self, room_name):
-    for room in self.all_rooms:
+    print (room_name)
+    for room in dojo.all_rooms:
       if room.name == room_name :
         return room
     return None
     
-  def get_person(self, person_name):
+  def get_person(self, name):
+    print(person_name)
     for person in self.people:
-      if person.name == person_name :
+      if person.name == name :
         return person
     return None
       
   def reallocate_person(self, person_name, new_room):
-    person = self.get_person(person_name)
-    room = self.get_room(new_room)
-    if room != None and person != None:
-      if room.type == "office":
-        person.office = room.name
-        room.occupants.append(person)
-      
-      if (room.type == livingspace) and (person.type == "fellow"):
-        person.living = room.name
-        room.occupants.append(person)
+    """this method reallocates a person to a new room """  
+    #find the New room
+    for room in self.all_rooms:
+      if room.name == new_room :
+        #find the person
+        for person in self.people:
+          if person.name == person_name:
+            #find the current room
+            for room in self.all_rooms:
+              if room.name == room_name :
+                old_room = room
+              pass
+            
+            if room.type == "office" and room.type == old_room.type:
+              person.office = room.type
+              room.occupants.append(person.name)
+              old_room.occupants.pop(person.name)
+            
+            if room.type == "livingspace" and room.type == old_room.type:
+              person.livingspace = room.type
+              room.occupants.append(person.name)
+              old_room.occupants.pop(person.name) 
+            
+            return person
+
       
       return None
     else:

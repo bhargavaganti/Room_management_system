@@ -62,10 +62,10 @@ class DojoCLI(cmd.Cmd):
     output = dojo.create_room(room_list, room_type, )
     if output.type == "office":
       for name in output.name:
-        print("\nAn office called " + name + " has been successfully created! \n")
+        print("An office called " + name + " has been successfully created! \n")
     if output.type == "livingspace":
       for name in output.name:
-        print("\nA livingspace called " + name + " has been successfully created!")
+        print("A livingspace called " + name + " has been successfully created!\n")
   
   @docopt_cmd 
   def do_add_person(self, arg):
@@ -74,10 +74,10 @@ class DojoCLI(cmd.Cmd):
     person_type = arg['<person_type>']
     wants_accomodation = arg['<wants_accomodation>']
     output = dojo.add_person( person_type, person_name, wants_accomodation)
-    print( "\n" + output.type + " " + output.name + " has been successfully created!\n")
-    print( "\n" + output.name + " has been allocated the Office " + output.office[0] + "\n")
+    print(output.type + " " + output.name + " has been successfully created!")
+    print(output.name + " has been allocated the Office " + output.office[0] + "\n")
     if output.type == "Fellow":
-      print( "\n" + output.name + " has been allocated the livingspace " + output.livingspace[0] + "\n")
+      print(output.name + " has been allocated the livingspace " + output.livingspace[0] + "\n")
       
 
   
@@ -88,7 +88,7 @@ class DojoCLI(cmd.Cmd):
     output = dojo.get_occupants(room_name)
     print(room_name)
     print("__________________________________")
-    print("\n" + output + "\n")
+    print(output + "\n")
   
   @docopt_cmd 
   def do_print_rooms(self, arg):
@@ -108,14 +108,17 @@ class DojoCLI(cmd.Cmd):
       for occupant in room.occupants:
         occupant_list.append(occupant.name)
       print(occupant_list)
-  """"
+
   @docopt_cmd 
   def do_reallocate_person(self, arg):
-    ""Usage:  reallocate_person <first_name> <last_name> <new_room_name> ""
+    """Usage:  reallocate_person <first_name> <last_name> <new_room_name> """
+    print ("Feature uneder development")
+    """
     person_name = arg['<first_name>'] + " " + arg['<last_name>']
     new_room_name = arg['<new_room_name>']
     output = dojo.reallocate_person(person_name, new_room_name)
-    print( output.name + " has been reallocated the room " + room_name)"""
+    print( output.name + " has been reallocated the room " + room_name)
+    """
     
     
   def do_quit(self, arg):
