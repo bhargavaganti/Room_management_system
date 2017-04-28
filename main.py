@@ -77,7 +77,7 @@ class DojoCLI(cmd.Cmd):
     print(output.type + " " + output.name + " has been successfully created!")
     print(output.name + " has been allocated the Office " + output.office[0] + "\n")
     if output.type == "Fellow":
-      print(output.name + " has been allocated the livingspace " + output.livingspace[0] + "\n")
+      print(output.name + " has been allocated the livingspace " + output.livingspace + "\n")
       
 
   
@@ -88,7 +88,7 @@ class DojoCLI(cmd.Cmd):
     output = dojo.get_occupants(room_name)
     print(room_name)
     print("__________________________________")
-    print(output + "\n")
+    print(output)
   
   @docopt_cmd 
   def do_print_rooms(self, arg):
@@ -107,7 +107,8 @@ class DojoCLI(cmd.Cmd):
       print("_____________________________________________")
       for occupant in room.occupants:
         occupant_list.append(occupant.name)
-      print(occupant_list)
+        
+      print (''.join(occupant_list))
 
   @docopt_cmd 
   def do_reallocate_person(self, arg):

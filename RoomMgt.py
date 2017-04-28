@@ -96,7 +96,7 @@ class Dojo():
       Fellow_object.office = self.allocate_office(Fellow_object)
       
       if args[-1] == "Y":
-        Fellow_object.livingspace = self.allocate_livingspace(Fellow_object)
+        Fellow_object.livingspace = "".join(self.allocate_livingspace(Fellow_object))
   
       self.people.append(Fellow_object)
       return Fellow_object
@@ -132,7 +132,7 @@ class Dojo():
    
   def get_occupants(self, room_name):
     for room in self.all_rooms:    
-      if room.name == room_name:
+      if ''.join(room.name) == ''.join(room_name):
         fellow_list = []
         for occupant in room.occupants:
           fellow_list.append(occupant.name)
@@ -159,19 +159,19 @@ class Dojo():
       if person.name == name :
         return person
     return None
-      
+  """    
   def reallocate_person(self, person_name, new_room):
-    """this method reallocates a person to a new room """  
+    ""this method reallocates a person to a new room ""
     #find the New room
     for room in self.all_rooms:
-      if room.name == new_room :
+      if room.name == ''.join(new_room) :
         #find the person
         for person in self.people:
-          if person.name == person_name:
+          if person.name == ''.join(person_name):
             #find the current room
-            for room in self.all_rooms:
-              if room.name == room_name :
-                old_room = room
+            for old_room in self.all_rooms:
+              if old_room.name == room_name :
+                old_room = old_room
               pass
             
             if room.type == "office" and room.type == old_room.type:
@@ -185,11 +185,11 @@ class Dojo():
               old_room.occupants.pop(person.name) 
             
             return person
-
       
       return None
     else:
       raise ("Person or Room Not Found")
+"""
       
    
  
